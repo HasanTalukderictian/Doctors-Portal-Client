@@ -6,7 +6,7 @@ import Dental from './Dental/Dental';
 import MakeAppointment from './MakeAppointment/MakeAppointment';
 import Testimonal from './Testimonial/Testimonal';
 import Contact from './ContactUs/Contact';
-import Footer from './Footer/Footer';
+import Footer from '../Shared/Navbar/Footer/Footer';
 
 
 
