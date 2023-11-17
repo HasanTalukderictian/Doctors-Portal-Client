@@ -5,8 +5,8 @@ import 'react-day-picker/dist/style.css';
 import { format } from 'date-fns';
 
 
-const AppointmentHeader = () => {
-    const [date, setDate] = useState(new Date());
+const AppointmentHeader = ({date, setDate}) => {
+  
 
     return (
         <div>
@@ -18,7 +18,7 @@ const AppointmentHeader = () => {
                             mode="single"
                             selected={date}
                             onSelect={setDate} />
-                        <p>You have Selected Date : {format(date, 'PP')}</p>
+                    
                     </div>
 
                 </div>
