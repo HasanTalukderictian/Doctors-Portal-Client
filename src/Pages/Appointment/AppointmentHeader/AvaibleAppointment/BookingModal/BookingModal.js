@@ -1,8 +1,12 @@
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const BookingModal = ({ date: initialDate, treatment, closeModal  }) => {
-    const { name, slots } = treatment;
+    const { name, slots, _id } = treatment;
+    const navigate = useNavigate();
+
     const [date, setDate] = useState(initialDate || new Date()); // Initialize with a default value
 
     useEffect(() => {
@@ -31,7 +35,27 @@ const BookingModal = ({ date: initialDate, treatment, closeModal  }) => {
         }
         console.log(data);
         form.reset()
-       
+       fetch(`http://localhost:5000/bookings/${_id}`, {
+          method: "POST",
+          headers: {
+            'content-type': 'application/json'
+          },
+          body:JSON.stringify(data)
+       })
+       .then(res => res.json())
+       .then(data => {
+        console.log(data);
+        if(data.insertedId){
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your Bookings Done",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              navigate('/');
+        }
+       })
     }
 
   
