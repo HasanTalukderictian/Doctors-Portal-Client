@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import Swal from 'sweetalert2';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
 
@@ -11,6 +11,8 @@ const SignUp = () => {
     
     const {createUser} = useContext(AuthContext);
     const navigate = useNavigate();
+    const location  = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const handleSignUp =event => {
         event.preventDefault();
@@ -34,7 +36,7 @@ const SignUp = () => {
                 showConfirmButton: false,
                 timer: 2000
               });
-              navigate('/');
+              navigate(from, { replace: true });
         })
         .then(error => {
             console.log(error)

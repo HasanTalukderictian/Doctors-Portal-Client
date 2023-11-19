@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 
@@ -11,6 +11,9 @@ const Login = () => {
       
     const {signIn} = useContext(AuthContext)
     const navigate = useNavigate();
+    const location  = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
 
 
     const handleLogin =event => {
@@ -35,7 +38,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1500
               });
-              navigate('/')
+              navigate(from, { replace: true });
         })
         .then(error => {
             console.log(error);
