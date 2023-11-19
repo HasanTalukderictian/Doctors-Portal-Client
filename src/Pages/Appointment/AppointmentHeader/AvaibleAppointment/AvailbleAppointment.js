@@ -8,12 +8,13 @@ const AvailbleAppointment = ({date}) => {
     const [services, setServices] = useState([]);
     const [treatment, setTreatment] =useState(null);
 
+
     useEffect(() => {
         fetch('services.json')
         .then(res => res.json())
         .then(data => {
             setServices(data);
-            console.log(data);
+         
         })
     },[])
     return (
@@ -24,13 +25,17 @@ const AvailbleAppointment = ({date}) => {
                     services.map(service => <AvaiableCart
                     key={service._id}
                     service={service}
-                    setTreatment={setTreatment}>
+                    setTreatment={setTreatment}
+                   >
 
                     </AvaiableCart>)
                 }
             </div>
-            {
-                treatment && <BookingModal treatment={treatment}></BookingModal>
+       
+            {   
+            
+                treatment && <BookingModal   date={date} treatment={treatment} 
+                setTreatment={setTreatment}></BookingModal>
             }
         </div>
     );
