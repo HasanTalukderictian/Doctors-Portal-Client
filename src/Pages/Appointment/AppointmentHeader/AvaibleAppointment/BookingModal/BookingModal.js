@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../../../AuthProvider/AuthProvider';
 
-const BookingModal = ({ date: initialDate, treatment, closeModal }) => {
+const BookingModal = ({ date: initialDate, treatment, closeModal, refetch }) => {
     const { name, slots, _id } = treatment;
-    const navigate = useNavigate();
+    
     const { user } = useContext(AuthContext);
 
 
@@ -42,7 +42,7 @@ const BookingModal = ({ date: initialDate, treatment, closeModal }) => {
 
         form.reset()
 
-        fetch(`http://localhost:5000/bookings/${_id}`, {
+        fetch(`http://localhost:5000/bookings`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -59,11 +59,12 @@ const BookingModal = ({ date: initialDate, treatment, closeModal }) => {
        
             .then(data => {
                 console.log(data);
-                if (data.sucess) {
+                if (typeof refetch === 'function') {
+                    refetch();
+                }
+                if (data.success) {
 
                     alert(`You have get  a appointment ${solt}` )
-
-
                 }
                 else {
                     alert("You have already a appointment")
