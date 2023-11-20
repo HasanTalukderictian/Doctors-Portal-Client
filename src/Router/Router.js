@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
 import Main from "../Pages/Main/Main";
 import Home from "../Pages/Home/Home";
 import About from "../Pages/About/About";
@@ -7,6 +6,9 @@ import Login from "../Pages/Login/Login";
 import Appointment from "../Pages/Appointment/Appointment";
 import SignUp from "../signup/SignUp";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
+import DashBoard from "../Pages/DashBoard/DashBoard";
+import MyAppointment from "../Pages/DashBoard/MyAppointment";
+import MyReviews from "../Pages/DashBoard/MyReviews";
 
  export const router = createBrowserRouter([
     {
@@ -33,7 +35,22 @@ import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
           path:'/appointment',
           element:<PrivateRoutes><Appointment></Appointment></PrivateRoutes>
         }
+       
 
       ]
     },
+    {
+      path: 'dashboard',
+      element: <PrivateRoutes><DashBoard></DashBoard></PrivateRoutes>,
+      children: [
+        {
+          path: 'myAppointment',
+          element: <MyAppointment></MyAppointment>
+        },
+        {
+          path: 'myreviews',
+          element: <MyReviews></MyReviews>
+        }
+      ]
+    }
   ]);
