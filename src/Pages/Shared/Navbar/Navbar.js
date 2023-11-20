@@ -24,7 +24,7 @@ const Navbar = () => {
         <Link><li><a>Contact Us</a></li></Link>
 
         {user ? <>
-            <Link to='/dashboard'><li><a>DashBoard</a></li> </Link>
+            <Link to='/dashboard/myAppointment'><li><a>DashBoard</a></li> </Link>
             <Link onClick={handleLogOut} className=' btn btn-error  text-xl'><li>LogOut</li></Link>
         </>
             : <> <Link to='/login' className='btn btn-primary text-xl text-white'>Login</Link></>}
