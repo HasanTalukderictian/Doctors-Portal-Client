@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Banner from './Banner/Banner';
 import Info from './Info/Info';
 import Services from './Services/Services';
@@ -7,10 +7,12 @@ import MakeAppointment from './MakeAppointment/MakeAppointment';
 import Testimonal from './Testimonial/Testimonal';
 import Contact from './ContactUs/Contact';
 import Footer from '../Shared/Navbar/Footer/Footer';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 
 
 const Home = () => {
+    const {user} = useContext(AuthContext);
     return (
         <div>
          <Banner></Banner>
@@ -19,7 +21,7 @@ const Home = () => {
          <Dental></Dental>
          <MakeAppointment></MakeAppointment>
          <Testimonal></Testimonal>
-         <Contact></Contact>
+         {user ?  <Contact></Contact> :<></>}
          <Footer></Footer>
 
         </div>

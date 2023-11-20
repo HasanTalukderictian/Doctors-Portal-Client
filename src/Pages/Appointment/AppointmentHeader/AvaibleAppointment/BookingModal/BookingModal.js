@@ -1,11 +1,14 @@
 import { format } from 'date-fns';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../../../AuthProvider/AuthProvider';
 
-const BookingModal = ({ date: initialDate, treatment, closeModal  }) => {
+const BookingModal = ({ date: initialDate, treatment, closeModal }) => {
     const { name, slots, _id } = treatment;
     const navigate = useNavigate();
+    const { user } = useContext(AuthContext);
+
 
     const [date, setDate] = useState(initialDate || new Date()); // Initialize with a default value
 
@@ -21,44 +24,55 @@ const BookingModal = ({ date: initialDate, treatment, closeModal  }) => {
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;
-     
+
         const solt = form.slot.value;
-        const name =form.name.value;
-        const phone  = form.phone.value;
+        const pname = form.pname.value;
+        const phone = form.phone.value;
         const email = form.email.value;
         const data = {
-            date:date,
-            name,
+            date: date,
+            patient: pname,
             phone,
             email,
-            solt
+            solt,
+            treatmentId: _id,
+            treatName: name,
         }
-        console.log(data);
+
+
         form.reset()
-       fetch(`http://localhost:5000/bookings/${_id}`, {
-          method: "POST",
-          headers: {
-            'content-type': 'application/json'
-          },
-          body:JSON.stringify(data)
-       })
-       .then(res => res.json())
-       .then(data => {
-        console.log(data);
-        if(data.insertedId){
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Your Bookings Done",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              navigate('/');
-        }
-       })
+
+        fetch(`http://localhost:5000/bookings/${_id}`, {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    throw new Error('Failed to add appointment');
+                }
+            })
+       
+            .then(data => {
+                console.log(data);
+                if (data.sucess) {
+
+                    alert(`You have get  a appointment ${solt}` )
+
+
+                }
+                else {
+                    alert("You have already a appointment")
+                }
+
+            })
     }
 
-  
+
 
     return (
         <div className='mx-4'>
@@ -72,13 +86,13 @@ const BookingModal = ({ date: initialDate, treatment, closeModal  }) => {
                         <input type='text' readOnly value={format(date, 'PP')} className='input input-bordered w-full max-w-xs' />
                         <select name='slot' className="select select-info w-full max-w-xs">
                             {
-                                slots.map(slot=> <option value={slot}>{slot}</option>)
+                                slots.map(slot => <option value={slot}>{slot}</option>)
                             }
-                           
+
                         </select>
-                        <input type='text'  name='name' placeholder='Full Name' className='input input-bordered w-full max-w-xs' />
+                        <input type='text' defaultValue={user?.name} name='pname' placeholder='Full Name' className='input input-bordered w-full max-w-xs' />
                         <input type='phone' name='phone' placeholder='Phone Number' className='input input-bordered w-full max-w-xs' />
-                        <input type='email' name='email' placeholder='Email' className='input input-bordered w-full max-w-xs' />
+                        <input type='email' name='email' placeholder='Email' readOnly defaultValue={user?.email} className='input input-bordered w-full max-w-xs' />
                         <input type='Submit' value='Submit' className='btn btn-warning w-full max-w-xs' />
                     </form>
                 </div>
