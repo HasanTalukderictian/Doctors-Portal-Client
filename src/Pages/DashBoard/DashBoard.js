@@ -5,11 +5,11 @@ const DashBoard = () => {
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col items-center justify-center">
+            <div className="drawer-content mx-5 my-5 ">
                 {/* Page content here */}
-                <h2 className='text-5xl font-semibold text-lime-600'> Welcome to Your DashBoard</h2>
+                <h2 className='text-3xl font-semibold text-lime-600'> Welcome to Your DashBoard</h2>
                 <Outlet></Outlet>
-                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+              
 
             </div>
             <div className="drawer-side">

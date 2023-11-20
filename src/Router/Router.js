@@ -34,23 +34,24 @@ import MyReviews from "../Pages/DashBoard/MyReviews";
         {
           path:'/appointment',
           element:<PrivateRoutes><Appointment></Appointment></PrivateRoutes>
+        },
+        {
+          path: 'dashboard',
+          element: <PrivateRoutes><DashBoard></DashBoard></PrivateRoutes>,
+          children: [
+            {
+              path: 'myAppointment',
+              element: <MyAppointment></MyAppointment>
+            },
+            {
+              path: 'myreviews',
+              element: <MyReviews></MyReviews>
+            }
+          ]
         }
        
 
       ]
     },
-    {
-      path: 'dashboard',
-      element: <PrivateRoutes><DashBoard></DashBoard></PrivateRoutes>,
-      children: [
-        {
-          path: 'myAppointment',
-          element: <MyAppointment></MyAppointment>
-        },
-        {
-          path: 'myreviews',
-          element: <MyReviews></MyReviews>
-        }
-      ]
-    }
+    
   ]);

@@ -4,7 +4,15 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Navbar = () => {
 
-    const {user,logOut} = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then({})
+            .then(error => {
+                console.log(error)
+            })
+    }
 
 
     const navOptions = <>
@@ -15,19 +23,17 @@ const Navbar = () => {
         <Link><li><a>Reviews</a></li></Link>
         <Link><li><a>Contact Us</a></li></Link>
 
-        {user ? <Link to='/dashboard'><li><a>DashBoard</a></li></Link>: <> </>}
-        
-       
+        {user ? <>
+            <Link to='/dashboard'><li><a>DashBoard</a></li> </Link>
+            <Link onClick={handleLogOut} className=' btn btn-error  text-xl'><li>LogOut</li></Link>
+        </>
+            : <> <Link to='/login' className='btn btn-primary text-xl text-white'>Login</Link></>}
+
+
 
     </>
 
-const handleLogOut =() => {
-    logOut()
-    .then( {})
-    .then(error => {
-       console.log(error)
-    })
-}
+
 
     return (
         <div className="navbar  bg-opacity-30 bg-base-100">
@@ -44,11 +50,12 @@ const handleLogOut =() => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                          {navOptions}
+                    {navOptions}
                 </ul>
             </div>
+
             <div className="navbar-end">
-            { user ? <>  <Link onClick={handleLogOut} className='btn btn-primary text-xl text-white'>LogOut</Link></> : <>  <Link to='/login' className='btn btn-primary text-xl text-white'>Login</Link></>}
+                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">drawer</label>
             </div>
         </div>
     );
