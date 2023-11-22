@@ -29,19 +29,34 @@ const Login = () => {
         signIn(email, password)
         .then(result  => {
             const user  =  result.user;
-            console.log(user)
-            form.reset();
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "You are Login Successfully",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              navigate(from, { replace: true });
+            const loggedUser ={ email: user.email}
+            
+            fetch('http://localhost:5000/jwt', {
+                method:"POST",
+                headers: {
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(loggedUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log('jwt access token ',data);
+
+                /// warning local storage is not the best 
+                localStorage.setItem('doctors-portal', data.token);
+                Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "User has been Created Successfully",
+                        showConfirmButton: false,
+                        timer: 2000
+                      });
+                      navigate(from, { replace: true });
+            })
+
         })
         .then(error => {
-            console.log(error);
+            console.log(error)
         })
     }
 

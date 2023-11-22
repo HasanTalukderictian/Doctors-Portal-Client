@@ -3,6 +3,8 @@ import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import { da } from 'date-fns/locale';
+
 
 
 
@@ -13,6 +15,7 @@ const SignUp = () => {
     const navigate = useNavigate();
     const location  = useLocation();
     const from = location.state?.from?.pathname || "/";
+  
 
     const handleSignUp =event => {
         event.preventDefault();
@@ -27,22 +30,43 @@ const SignUp = () => {
         createUser(email, password)
         .then(result => {
                const user = result.user;
-               console.log(user);
-               form.reset();
-               Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "User has been Created Successfully",
-                showConfirmButton: false,
-                timer: 2000
-              });
-              navigate(from, { replace: true });
+            
+            const loggedUser = {
+                email:user.email
+            }
+            console.log(loggedUser);
+            fetch('http://localhost:5000/jwt', {
+                method:"POST",
+                headers: {
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(loggedUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log('jwt access token ',data);
+
+                /// warning local storage is not the best 
+                localStorage.setItem('doctors-portal', data.token);
+                Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "User has been Created Successfully",
+                        showConfirmButton: false,
+                        timer: 2000
+                      });
+                      navigate(from, { replace: true });
+            })
+
         })
         .then(error => {
             console.log(error)
         })
+
+      
        
     }
+   
 
     return (
         <div className="hero min-h-screen bg-base-200">

@@ -8,7 +8,9 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         logOut()
-            .then({})
+            .then(()=> {
+                localStorage.removeItem('doctors-portal');
+            })
             .then(error => {
                 console.log(error)
             })
@@ -25,9 +27,9 @@ const Navbar = () => {
 
         {user ? <>
             <Link to='/dashboard/myAppointment'><li><a>DashBoard</a></li> </Link>
-            <Link onClick={handleLogOut} className=' btn btn-error  text-xl'><li>LogOut</li></Link>
+            <Link onClick={handleLogOut} className=' btn btn-error btn-sm text-xl'><li>LogOut</li></Link>
         </>
-            : <> <Link to='/login' className='btn btn-primary text-xl text-white'>Login</Link></>}
+            : <> <Link to='/login' className='btn btn-primary btn-sm text-xl text-white'>Login</Link></>}
 
 
 
