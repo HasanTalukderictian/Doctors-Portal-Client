@@ -35,6 +35,7 @@ const SignUp = () => {
                 email:user.email
             }
             console.log(loggedUser);
+            
             fetch('http://localhost:5000/jwt', {
                 method:"POST",
                 headers: {

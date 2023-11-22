@@ -9,9 +9,15 @@ const MyAppointment = () => {
 
     useEffect(() => {
         const fetchAppointments = async () => {
+            const url =`http://localhost:5000/booking?email=${user?.email}`;
             try {
                 if (user) {
-                    const response = await fetch(`http://localhost:5000/booking?email=${user?.email}`);
+                    const response = await fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            authorization : `Bearer ${localStorage.getItem('doctors-portal')}`
+                        }
+                    });
                     const data = await response.json();
                     setAppointments(data);
                 }

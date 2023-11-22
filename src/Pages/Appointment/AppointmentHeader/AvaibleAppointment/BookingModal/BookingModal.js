@@ -42,7 +42,7 @@ const BookingModal = ({ date: initialDate, treatment, closeModal, refetch }) => 
 
         form.reset()
 
-        fetch(`http://localhost:5000/bookings`, {
+        fetch(`https://server-9mqgjub7r-hasantalukder1234.vercel.app/bookings`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

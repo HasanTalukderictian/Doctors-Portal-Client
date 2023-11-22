@@ -1,0 +1,84 @@
+
+ [
+      { 
+        "_id":1,
+        "doctorimg": "https://i.ibb.co/DfhpBcj/Doctor.jpg",
+        "diseaseimg": "disease1.jpg",
+        "specialist": "Cardiologist",
+        "price": "$150",
+        "visiting_time": "Monday, Wednesday, Friday - 9:00 AM to 5:00 PM"
+      },
+      {  
+        "_id":2,
+        "doctorimg": "https://i.ibb.co/6rWT3JJ/Doctor1.jpg",
+        "diseaseimg": "disease2.jpg",
+        "specialist": "Dermatologist",
+        "price": "$120",
+        "visiting_time": "Tuesday, Thursday - 10:00 AM to 6:00 PM"
+      },
+      {
+        "_id":3,
+        "doctorimg": "https://i.ibb.co/q1M9c4w/doctor2.jpg",
+        "diseaseimg": "disease3.jpg",
+        "specialist": "Ophthalmologist",
+        "price": "$130",
+        "visiting_time": "Monday, Wednesday, Friday - 8:30 AM to 4:30 PM"
+      },
+      { 
+        "_id":4,
+        "doctorimg": "https://i.ibb.co/SP1LM2L/doctor3.jpg",
+        "diseaseimg": "disease4.jpg",
+        "specialist": "Pediatrician",
+        "price": "$110",
+        "visiting_time": "Tuesday, Thursday - 9:30 AM to 5:30 PM"
+      },
+      { 
+        "_id":5,
+        "doctorimg": "https://i.ibb.co/kHg3w5p/Doctor5.jpg",
+        "diseaseimg": "disease5.jpg",
+        "specialist": "Gynecologist",
+        "price": "$140",
+        "visiting_time": "Monday, Wednesday, Friday - 10:00 AM to 6:00 PM"
+      },
+      { 
+        "_id":6,
+        "doctorimg": "https://i.ibb.co/82Gj6DQ/Doctor6.jpg",
+        "diseaseimg": "disease6.jpg",
+        "specialist": "Orthopedic Surgeon",
+        "price": "$160",
+        "visiting_time": "Tuesday, Thursday - 8:00 AM to 4:00 PM"
+      },
+      {  
+        "_id":7,
+        "doctorimg": "https://i.ibb.co/2kgwK7V/images-5.jpg",
+        "diseaseimg": "disease7.jpg",
+        "specialist": "Neurologist",
+        "price": "$170",
+        "visiting_time": "Monday, Wednesday, Friday - 8:00 AM to 4:00 PM"
+      },
+      { 
+        "_id":8,
+        "doctorimg": "https://i.ibb.co/tpdDYFm/istockphoto-1390000431-170667a.webp",
+        "diseaseimg": "disease8.jpg",
+        "specialist": "Urologist",
+        "price": "$125",
+        "visiting_time": "Tuesday, Thursday - 9:00 AM to 5:00 PM"
+      },
+      { 
+        "_id":9,
+        "doctorimg": "https://i.ibb.co/SKyXRnk/download-11.jpg",
+        "diseaseimg": "disease9.jpg",
+        "specialist": "ENT Specialist",
+        "price": "$115",
+        "visiting_time": "Monday, Wednesday, Friday - 10:30 AM to 6:30 PM"
+      },
+      { 
+        "_id":10,
+        "doctorimg": "https://i.ibb.co/F8vD6kC/images-4.jpg",
+        "diseaseimg": "disease10.jpg",
+        "specialist": "Psychiatrist",
+        "price": "$150",
+        "visiting_time": "Tuesday, Thursday - 8:30 AM to 4:30 PM"
+      }
+    ]
+ 
