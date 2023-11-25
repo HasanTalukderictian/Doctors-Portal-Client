@@ -36,8 +36,8 @@ const SignUp = () => {
                 };
     
                 // Fetch to create user in the database
-                fetch('http://localhost:5000/users', {
-                    method: 'POST',
+                fetch(`http://localhost:5000/users/${user?.email}`, {
+                    method: 'PUT',
                     headers: {
                         'content-type': 'application/json',
                     },
