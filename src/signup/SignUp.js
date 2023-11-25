@@ -17,56 +17,69 @@ const SignUp = () => {
     const from = location.state?.from?.pathname || "/";
   
 
-    const handleSignUp =event => {
+    const handleSignUp = (event) => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
         const photo = form.photo.value;
         const password = form.password.value;
-        const user  = { name, email, photo, password}
-        console.log(user);
-
+        const user = { name, email, photo, password };
+        // console.log(user);
+    
         createUser(email, password)
-        .then(result => {
-               const user = result.user;
-            
-            const loggedUser = {
-                email:user.email
-            }
-            console.log(loggedUser);
-            
-            fetch('http://localhost:5000/jwt', {
-                method:"POST",
-                headers: {
-                    'content-type':'application/json'
-                },
-                body:JSON.stringify(loggedUser)
+            .then((result) => {
+                const user = result.user;
+    
+                const loggedUser = {
+                    email: user.email
+                };
+    
+                // Fetch to create user in the database
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(loggedUser),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log('User created data:', data);
+    
+                        // Continue with the existing code for JWT token handling
+                        fetch('http://localhost:5000/jwt', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json',
+                            },
+                            body: JSON.stringify(loggedUser),
+                        })
+                            .then((res) => res.json())
+                            .then((data) => {
+                                console.log('JWT access token:', data);
+    
+                                // Warning: Local storage is not the best practice for storing tokens
+                                localStorage.setItem('doctors-portal', data.token);
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'User has been Created Successfully',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                                navigate(from, { replace: true });
+                            });
+                    })
+                    .catch((error) => {
+                        console.error('Error creating user:', error);
+                        // Handle error appropriately (e.g., show an error message to the user)
+                    });
             })
-            .then(res => res.json())
-            .then(data => {
-                console.log('jwt access token ',data);
-
-                /// warning local storage is not the best 
-                localStorage.setItem('doctors-portal', data.token);
-                Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "User has been Created Successfully",
-                        showConfirmButton: false,
-                        timer: 2000
-                      });
-                      navigate(from, { replace: true });
-            })
-
-        })
-        .then(error => {
-            console.log(error)
-        })
-
-      
-       
-    }
+            .catch((error) => {
+                console.log('Error during sign up:', error);
+            });
+    };
    
 
     return (

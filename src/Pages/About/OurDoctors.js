@@ -42,13 +42,13 @@ const OurDoctors = () => {
   };
 
   return (
-    <div>
+    <div className='my-3'>
       <div className='my-8'>
         <h3 className='text-center text-4xl font-bold '>Our Specialist Doctors </h3>
         <p className='text-xl text-center my-2 text-lime-500'>Get Their Appointment</p>
       </div>
 
-      <Slider {...settings}>
+      <Slider {...settings} className='space-x-2 gap-3'>
         {doctors.map((doctor) => (
           <DoctorCart key={doctor._id} doctor={doctor}></DoctorCart>
         ))}

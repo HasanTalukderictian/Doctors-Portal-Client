@@ -30,6 +30,20 @@ const Login = () => {
         .then(result  => {
             const user  =  result.user;
             const loggedUser ={ email: user.email}
+
+            // fetch('http://localhost:5000/users', {
+            //     method: 'POST',
+            //     headers: {
+            //         'content-type': 'application/json',
+            //     },
+            //     body: JSON.stringify(loggedUser),
+            // })
+            // .then(res => res.json() )
+            // .then(data => {
+            //     console.log('Users created data :', data)
+            // })
+            
+
             
             fetch('http://localhost:5000/jwt', {
                 method:"POST",

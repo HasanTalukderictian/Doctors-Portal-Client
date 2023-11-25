@@ -13,12 +13,14 @@ const DoctorCart = ({ doctor }) => {
             </div>
             <div className="w-1/2 text-center">
                 <h2 className="card-title">{name}</h2>
-                <p>{specialist}</p>
-                <p>{visiting_time}</p>
-                <p className='text-violet-700'>Visitng Price: {price}</p>
-                <div className="card-actions justify-center">
-                    <button className="btn btn-primary">Get Appointment</button>
-                </div>
+                <p className='text-xl my-2'>Specialist:{specialist}</p>
+                <p className='text-xl my-2'>{visiting_time}</p>
+                <p className='text-violet-700 my-2'>Visiting Price: {price}</p>
+               
+                  <div className='p-3'>
+                  <button className="btn btn-primary p-2">Get Appointment</button>
+                    </div>  
+               
             </div>
         </div>
     );
