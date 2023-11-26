@@ -9,6 +9,7 @@ import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import DashBoard from "../Pages/DashBoard/DashBoard";
 import MyAppointment from "../Pages/DashBoard/MyAppointment";
 import MyReviews from "../Pages/DashBoard/MyReviews";
+import AllUsers from "../Pages/DashBoard/AllUsers";
 
  export const router = createBrowserRouter([
     {
@@ -46,7 +47,12 @@ import MyReviews from "../Pages/DashBoard/MyReviews";
             {
               path: 'myreviews',
               element: <MyReviews></MyReviews>
+            },
+            {
+              path: 'allUsers',
+              element: <AllUsers></AllUsers>
             }
+            
           ]
         }
        
