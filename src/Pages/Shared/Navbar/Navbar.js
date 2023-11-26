@@ -12,7 +12,7 @@ const Navbar = () => {
                 localStorage.removeItem('doctors-portal');
             })
             .then(error => {
-                console.log(error)
+                // console.log(error)
             })
     }
 

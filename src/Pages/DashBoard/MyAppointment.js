@@ -1,32 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+;
 
 const MyAppointment = () => {
     const [appointments, setAppointments] = useState([]);
     const { user } = useContext(AuthContext);
-    console.log(user);
+   
+
 
     useEffect(() => {
-        const fetchAppointments = async () => {
-            const url =`http://localhost:5000/booking?email=${user?.email}`;
-            try {
-                if (user) {
-                    const response = await fetch(url, {
+    
+            const url = `http://localhost:5000/booking?email=${user?.email}`;
+           fetch(url, {
                         method: 'GET',
                         headers: {
-                            authorization : `Bearer ${localStorage.getItem('doctors-portal')}`
+                            authorization: `Bearer ${localStorage.getItem('doctors-portal')}`
                         }
-                    });
-                    const data = await response.json();
-                    setAppointments(data);
-                }
-            } catch (error) {
-                console.error('Error fetching appointments:', error);
-            }
-        };
-
-        fetchAppointments();
+                    })
+                    .then(res => res.json() )
+                    .then(data => {
+                        // console.log(data);
+                        setAppointments(data);
+                    })
+                  
+        
+                   
+             
+     
     }, [user]);
 
     const handleDelete = (item) => {

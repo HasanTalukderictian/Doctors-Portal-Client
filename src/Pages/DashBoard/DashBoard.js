@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useAdmin from '../../Hooks/useAdmin';
+
+
+
+
 const DashBoard = () => {
+    
+    const { user } = useContext(AuthContext);
+    const [admin ] = useAdmin(user);
+
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -18,7 +28,7 @@ const DashBoard = () => {
                     {/* Sidebar content here */}
                     <li><Link to="/dashboard/myappointment">My Appointments</Link></li>
                     <li><Link to="/dashboard/myreviews">My Reviews</Link></li>
-                    <li><Link to="/dashboard/allUsers">All Users</Link></li>
+                    { admin &&     <li><Link to="/dashboard/allUsers">All Users</Link></li>}
                 </ul>
 
             </div>

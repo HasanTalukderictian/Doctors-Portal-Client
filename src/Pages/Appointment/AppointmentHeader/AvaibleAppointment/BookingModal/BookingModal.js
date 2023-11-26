@@ -58,7 +58,7 @@ const BookingModal = ({ date: initialDate, treatment, closeModal, refetch }) => 
             })
        
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (typeof refetch === 'function') {
                     refetch();
                 }
