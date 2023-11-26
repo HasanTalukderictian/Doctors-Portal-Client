@@ -4,14 +4,21 @@ const AllUsers = () => {
     
     const [users, setUsers] = useState([]);
 
-    useEffect( () => {
-        fetch('http://localhost:5000/allusers')
+    useEffect(() => {
+        fetch('http://localhost:5000/allusers', {
+            headers: {
+                authorization : `Bearer ${localStorage.getItem('doctors-portal')}`
+            }
+        })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-            setUsers(data);
+           console.log(data)
+           setUsers(data);
         })
-    },[])
+        .catch(error => {
+          console.log(error)
+        });
+    }, []);
 
 
     return (
@@ -33,6 +40,8 @@ const AllUsers = () => {
                             <tr className="bg-base-200" key={item._id}>
                                 <th>{index + 1}</th>
                                 <td>{item.email}</td>
+                                <td><button className="btn btn-outline btn-sm">Make Admin</button></td>
+                                <td><button className="btn btn-outline btn-sm">Remove User</button></td>
                                 
                                 
                             </tr>
