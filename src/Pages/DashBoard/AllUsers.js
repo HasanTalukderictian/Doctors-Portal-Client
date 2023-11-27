@@ -38,7 +38,17 @@ const AllUsers = () => {
                 authorization: `Bearer ${localStorage.getItem('doctors-portal')}`,
             },
         })
-        .then((res) => res.json())
+        .then((res) => {
+            if(res.status === 403){
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Failed to make an Admin",
+                    footer: '<a href="#">Why do I have this issue?</a>'
+                  });
+            }
+            res.json()
+        })
         .then((data) => {
             console.log(data);
             if (data && data.modifiedCount > 0) {
