@@ -28,7 +28,8 @@ const DashBoard = () => {
                     {/* Sidebar content here */}
                     <li><Link to="/dashboard/myappointment">My Appointments</Link></li>
                     <li><Link to="/dashboard/myreviews">My Reviews</Link></li>
-                    { admin &&     <li><Link to="/dashboard/allUsers">All Users</Link></li>}
+                    { admin && <><li><Link to="/dashboard/allUsers">All Users</Link></li>
+                    <li><Link to='/dashboard/AddNewDoctor'>Add New Doctor</Link></li></>}
                 </ul>
 
             </div>
