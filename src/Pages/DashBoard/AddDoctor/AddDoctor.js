@@ -37,13 +37,15 @@ const AddDoctor = () => {
         name,
         specialist,
         price,
-        img: imgbbResult.data.url, // Use the hosted image URL
+        doctorimg: imgbbResult.data.url, // Use the hosted image URL
       };
-
+      console.log(img)
+      
         fetch('http://localhost:5000/doctors', {
             method:"POST", 
             headers: {
-                'content-type':'application/json'
+                'content-type':'application/json',
+                authorization: `Bearer ${localStorage.getItem('doctors-portal')}`,
             },
             body:JSON.stringify(data)
         })

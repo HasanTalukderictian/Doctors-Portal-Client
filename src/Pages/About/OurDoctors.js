@@ -46,9 +46,10 @@ const OurDoctors = () => {
       <div className='my-8'>
         <h3 className='text-center text-4xl font-bold '>Our Specialist Doctors </h3>
         <p className='text-xl text-center my-2 text-lime-500'>Get Their Appointment</p>
+        <p className='text-xl text-center my-2 text-lime-500'> Total Doctor : {doctors.length}</p>
       </div>
 
-      <Slider {...settings} className='space-x-2 gap-3'>
+      <Slider {...settings} className='space-x-2 gap-6'>
         {doctors.map((doctor) => (
           <DoctorCart key={doctor._id} doctor={doctor}></DoctorCart>
         ))}

@@ -2,16 +2,16 @@ import React from 'react';
 
 const DoctorCart = ({ doctor }) => {
     const { doctorimg, name, specialist, visiting_time, price } = doctor;
-    const imageWidth = '100%';
+    const imageWidth = '150px'; 
 
     return (
         <div className="card card-compact bg-base-100 shadow-xl flex items-center">
-            <div className="w-1/2 text-center">
+            <div className=" text-center">
                 <figure>
                     <img src={doctorimg} className="rounded my-2 mx-auto" style={{ width: imageWidth }} alt="Doctor" />
                 </figure>
             </div>
-            <div className="w-1/2 text-center">
+            <div className="text-center">
                 <h2 className="card-title">{name}</h2>
                 <p className='text-xl my-2'>Specialist:{specialist}</p>
                 <p className='text-xl my-2'>{visiting_time}</p>
