@@ -76,6 +76,46 @@ const AllUsers = () => {
         });
     };
 
+
+    const handleDeleteUser = (item) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/allusers/${item._id}`, {
+                    method: 'DELETE',
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.deletedCount > 0) {
+                            // Remove the deleted item from the UI
+                           
+
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Your Doctor has been deleted.',
+                                icon: 'success',
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error deleting doctor:', error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Failed to delete the doctor.',
+                            icon: 'error',
+                        });
+                    });
+            }
+        });
+    }  
+
     return (
         <div>
             <h2>Welcome to All Users {users.length}</h2>
@@ -102,7 +142,7 @@ const AllUsers = () => {
                                         Make Admin
                                     </button>
                                 </td>
-                                <td><button className="btn btn-outline btn-sm">Remove User</button></td>
+                                <td><button onClick={() => handleDeleteUser(item._id)} className="btn btn-outline btn-sm">Remove User</button></td>
                             </tr>
                         ))}
                     </tbody>
