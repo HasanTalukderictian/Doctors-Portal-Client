@@ -1,5 +1,6 @@
 import React from 'react';
 import treatment from '../../../assets/images/treatment.png';
+import { Link } from 'react-router-dom';
 
 const Dental = () => {
     return (
@@ -15,7 +16,7 @@ const Dental = () => {
                       distribution of letters,as opposed to using 'Content here, content <br />
                        here', making it look like readable English. Many desktop <br />
                         publishing packages and web page</p>
-                    <button className="btn btn-primary uppercase text-white">Get Started</button>
+                    <Link to='appointment' className="btn btn-primary uppercase text-white">Get Started</Link>
                 </div>
             </div>
         </div>

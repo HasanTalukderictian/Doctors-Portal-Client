@@ -1,20 +1,20 @@
 [
     {
-        "_id":1,
+     
         "name":"Faruk",
         "reviews": "Excellent Works with professional caring services",
          "img":"https://i.ibb.co/n7bhJjm/Bc-INe-MVCIAABe-Wd.jpg",
          "location":"Dhaka"
     }, 
     {
-        "_id":2,
+      
         "name":"Rafiq",
         "reviews": "Excellent Works with professional caring services",
          "img":"https://i.ibb.co/wCCdv0D/download-11.jpg",
          "location":"Cumilla"
     }, 
     {
-        "_id":3,
+        
         "name":"Sumit",
         "reviews": "Excellent Works with professional caring services",
          "img":"https://i.ibb.co/cQ2W3kd/download-12.jpg",

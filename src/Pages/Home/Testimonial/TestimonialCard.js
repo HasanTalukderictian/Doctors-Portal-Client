@@ -2,7 +2,7 @@ import React from 'react';
 
 const TestimonialCard = ({ review }) => {
 
-    const { img, name, reviews, location } = review;
+    const { img, name, message, location } = review;
 
     return (
         <div className="card card-compact lg:max-w-lg bg-base-100 shadow-xl my-6">
@@ -18,7 +18,7 @@ const TestimonialCard = ({ review }) => {
                         </div>
                     </div>
                      <div>
-                     <p className='mx-2'>{reviews}</p>
+                     <p className='mx-2'>{message}</p>
                      <p className='mx-2 text-bold'>{location}</p>
                      </div>
                     

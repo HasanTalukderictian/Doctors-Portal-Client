@@ -12,6 +12,7 @@ import MyReviews from "../Pages/DashBoard/MyReviews";
 import AllUsers from "../Pages/DashBoard/AllUsers";
 import AddDoctor from "../Pages/DashBoard/AddDoctor/AddDoctor";
 import ShowAllDoctor from "../Pages/DashBoard/ShowAllDoctor";
+import Contact from "../Pages/Home/ContactUs/Contact";
 
  export const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ import ShowAllDoctor from "../Pages/DashBoard/ShowAllDoctor";
         {
             path:'/',
             element:<Home></Home>
+        },
+        {
+          path:'contact',
+          element:<Contact></Contact>
         },
         {
             path:'/about',
@@ -62,6 +67,7 @@ import ShowAllDoctor from "../Pages/DashBoard/ShowAllDoctor";
               path:'AllDoctors',
               element:<ShowAllDoctor></ShowAllDoctor>
             }
+            
             
           ]
         }
