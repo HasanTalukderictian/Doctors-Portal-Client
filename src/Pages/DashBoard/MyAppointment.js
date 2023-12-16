@@ -46,8 +46,6 @@ const MyAppointment = () => {
                 })
                     .then((res) => res.json())
                     .then((data) => {
-                        console.log(data);
-
                         if (data.deletedCount > 0) {
                             // Remove the deleted item from the UI
                             setAppointments((prevAppointments) =>

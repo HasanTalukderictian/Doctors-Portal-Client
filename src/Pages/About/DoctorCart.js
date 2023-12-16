@@ -1,8 +1,21 @@
 import React from 'react';
 
 const DoctorCart = ({ doctor }) => {
-    const { doctorimg, name, specialist, visiting_time, price } = doctor;
-    const imageWidth = '150px'; 
+    const { _id,doctorimg, name, specialist, visiting_time, price } = doctor;
+    const imageWidth = '150px';
+    
+    
+   const handleDoctor = _id => {
+  console.log(_id);
+  fetch(`http://localhost:5000/doctors/${_id}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error("Error fetching doctor:", error);
+    });
+};
 
     return (
         <div className="card card-compact bg-base-100 shadow-xl flex items-center">
@@ -18,7 +31,7 @@ const DoctorCart = ({ doctor }) => {
                 <p className='text-violet-700 my-2'>Visiting Price: {price}</p>
                
                   <div className='p-3'>
-                  <button className="btn btn-primary p-2">Get Appointment</button>
+                  <button onClick={() => handleDoctor(_id)} className="btn btn-primary p-2">Get Appointment</button>
                     </div>  
                
             </div>
